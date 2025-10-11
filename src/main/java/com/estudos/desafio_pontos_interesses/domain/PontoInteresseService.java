@@ -1,0 +1,14 @@
+package com.estudos.desafio_pontos_interesses.domain;
+
+import java.util.List;
+
+import com.estudos.desafio_pontos_interesses.adapters.inbound.dtos.PontosInteresseDTO;
+
+public interface PontoInteresseService {
+  List<PontosInteresseDTO> listarTodosPontos();
+
+  List<PontosInteresseDTO> pontosProximos();
+
+  void cadastrarNovoPonto(PontosInteresseDTO dto);
+}
+ 
