@@ -9,6 +9,13 @@ public class PontoInteresse {
   private int x;
   private int y;
 
+  public PontoInteresse(UUID id, String nome, int x, int y) {
+    this.id = id;
+    this.nome = nome;
+    this.x = x;
+    this.y = y;
+  }
+
   public PontoInteresse(String nome, int x, int y) {
     this.nome = nome;
     this.x = x;

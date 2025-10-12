@@ -29,4 +29,20 @@ public class JpaPontoInteresseEntity {
     this.y = pontoInteresse.getY();
   }
 
+  public UUID getId() {
+    return id;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public int getX() {
+    return x;
+  }
+
+  public int getY() {
+    return y;
+  }
+
 }

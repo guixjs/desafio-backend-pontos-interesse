@@ -1,5 +1,7 @@
 package com.estudos.desafio_pontos_interesses.adapters.inbound.dtos;
 
-public record PontosInteresseDTO(String name, int x, int y) {
+import java.util.UUID;
+
+public record PontosInteresseDTO(UUID id, String name, int x, int y) {
 
 }
