@@ -18,17 +18,21 @@ public class PontoInteresseController {
 
   private final PontoInteresseService pontoInteresseService;
 
-  PontoInteresseController(PontoInteresseService pontoInteresseService) {
+  public PontoInteresseController(PontoInteresseService pontoInteresseService) {
+    System.out.println("Controller intanciado");
     this.pontoInteresseService = pontoInteresseService;
   }
 
   @GetMapping("/alls")
-  public ResponseEntity<List<PontosInteresseDTO>> getAllsPoints(@RequestParam String param) {
+  public ResponseEntity<List<PontosInteresseDTO>> getAllsPoints() {
 
     try {
       List<PontosInteresseDTO> points = pontoInteresseService.listarTodosPontos();
+      System.out.println("TESTANDO FUNCIONOU");
       return ResponseEntity.ok().body(points);
     } catch (Exception e) {
+      e.printStackTrace();
+      System.out.println("TESTANDO NAO FUNCIONOU");
       return ResponseEntity.badRequest().build();
     }
 

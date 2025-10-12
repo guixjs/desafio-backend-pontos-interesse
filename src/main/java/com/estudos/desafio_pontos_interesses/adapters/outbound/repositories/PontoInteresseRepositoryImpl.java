@@ -10,15 +10,19 @@ public class PontoInteresseRepositoryImpl implements PontoInteresseRepository {
 
   private final JpaPontoInteresseRepository jpaRepository;
 
-  PontoInteresseRepositoryImpl(JpaPontoInteresseRepository jpa) {
+  public PontoInteresseRepositoryImpl(JpaPontoInteresseRepository jpa) {
+    System.out.println("REPOSITORIO INSTANCIADO");
     this.jpaRepository = jpa;
   }
 
   @Override
   public List<PontoInteresse> findAll() {
-    return this.jpaRepository.findAll()
+    System.out.println("Chamou findAll do repository!");
+    List<PontoInteresse> pontos = this.jpaRepository.findAll()
         .stream().map(poi -> new PontoInteresse(poi.getId(), poi.getNome(), poi.getX(), poi.getY()))
         .collect(Collectors.toList());
+    System.out.println("Tamanho da lista: " + (pontos == null ? "null" : pontos.size()));
+    return pontos;
   }
 
   @Override

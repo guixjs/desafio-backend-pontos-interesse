@@ -7,8 +7,7 @@ import com.estudos.desafio_pontos_interesses.adapters.inbound.dtos.PontosInteres
 public interface PontoInteresseService {
   List<PontosInteresseDTO> listarTodosPontos();
 
-  List<PontosInteresseDTO> pontosProximos();
+  List<PontosInteresseDTO> pontosProximos(int x, int y, int distancia);
 
   void cadastrarNovoPonto(PontosInteresseDTO dto);
 }
- 

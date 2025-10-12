@@ -29,6 +29,9 @@ public class JpaPontoInteresseEntity {
     this.y = pontoInteresse.getY();
   }
 
+  public JpaPontoInteresseEntity() {
+  }
+
   public UUID getId() {
     return id;
   }
