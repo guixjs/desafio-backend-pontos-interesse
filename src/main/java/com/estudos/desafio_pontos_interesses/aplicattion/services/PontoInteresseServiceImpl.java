@@ -7,6 +7,7 @@ import com.estudos.desafio_pontos_interesses.adapters.inbound.dtos.PontosInteres
 import com.estudos.desafio_pontos_interesses.domain.PontoInteresse;
 import com.estudos.desafio_pontos_interesses.domain.PontoInteresseRepository;
 import com.estudos.desafio_pontos_interesses.domain.PontoInteresseService;
+import com.estudos.desafio_pontos_interesses.domain.exceptions.CoordenadasDoPontoInvalidasException;
 
 public class PontoInteresseServiceImpl implements PontoInteresseService {
 
@@ -19,7 +20,7 @@ public class PontoInteresseServiceImpl implements PontoInteresseService {
   @Override
   public List<PontosInteresseDTO> listarTodosPontos() {
     List<PontosInteresseDTO> lista = repository.findAll()
-        .stream().map(poi -> new PontosInteresseDTO(poi.getId(), poi.getNome(), poi.getX(), poi.getY()))
+        .stream().map(poi -> new PontosInteresseDTO(poi.getNome(), poi.getX(), poi.getY()))
         .toList();
 
     if (lista.isEmpty()) {
@@ -39,7 +40,7 @@ public class PontoInteresseServiceImpl implements PontoInteresseService {
 
     return repository.getPontosDentroDaArea(xMin, xMax, yMin, yMax)
         .stream().filter(poi -> calcularDistancia(x, y, poi, distancia) <= distancia)
-        .map(poi2 -> new PontosInteresseDTO(poi2.getId(), poi2.getNome(), poi2.getX(), poi2.getY()))
+        .map(poi2 -> new PontosInteresseDTO(poi2.getNome(), poi2.getX(), poi2.getY()))
         .collect(Collectors.toList());
   }
 
@@ -53,7 +54,15 @@ public class PontoInteresseServiceImpl implements PontoInteresseService {
   }
 
   @Override
-  public void cadastrarNovoPonto(PontosInteresseDTO dto) {
+  public void cadastrarNovoPonto(PontosInteresseDTO dto) throws CoordenadasDoPontoInvalidasException {
+    if (dto.x() < 0 || dto.y() < 0) {
+      throw new CoordenadasDoPontoInvalidasException();
+    }
+    if (dto.name().isBlank()) {
+      throw new CoordenadasDoPontoInvalidasException();
+    }
+
+    repository.save(dto);
   }
 
 }
